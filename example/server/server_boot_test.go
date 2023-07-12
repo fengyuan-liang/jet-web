@@ -29,7 +29,7 @@ type Args struct {
 	FormParam2 string `json:"form_param2"`
 }
 
-func (u *UserController) GetV1UsageWeek(r *Args, env *rpc.Env) (*api.Response, error) {
+func (u *UserController) GetV1Usage0Week(r *Args, env *rpc.Env) (*api.Response, error) {
 	return api.Success(xlog.GenReqId(), r.CmdArgs), nil
 }
 
