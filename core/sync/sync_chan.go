@@ -4,7 +4,7 @@
 
 package sync
 
-// Auto reset event.
+// Event Auto reset event.
 type Event chan struct{}
 
 func NewEvent() Event {
@@ -22,10 +22,10 @@ func (e Event) R() EventR {
 	return EventR((chan struct{})(e))
 }
 
-// You can determine whether event setted through EventR.
+// EventR You can determine whether event setted through EventR.
 type EventR <-chan struct{}
 
-// You can notify something done through DoneChan.SetDone().
+// DoneChan You can notify something done through DoneChan.SetDone().
 type DoneChan chan struct{}
 
 func NewDoneChan() DoneChan {
@@ -45,7 +45,7 @@ func (d DoneChan) R() DoneChanR {
 	return (chan struct{})(d)
 }
 
-// You can determine whether something done through DoneChanR.Done().
+// DoneChanR You can determine whether something done through DoneChanR.Done().
 type DoneChanR <-chan struct{}
 
 func (d DoneChanR) Done() bool {

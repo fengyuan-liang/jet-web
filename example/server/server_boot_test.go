@@ -10,6 +10,7 @@ import (
 	"jet-web/jet"
 	"jet-web/pkg/xlog"
 	"testing"
+	"time"
 )
 
 func TestBoot(t *testing.T) {
@@ -30,6 +31,7 @@ type Args struct {
 }
 
 func (u *UserController) GetV1Usage0Week(r *Args, env *rpc.Env) (*api.Response, error) {
+	time.Sleep(time.Millisecond * 10)
 	return api.Success(xlog.GenReqId(), r.CmdArgs), nil
 }
 

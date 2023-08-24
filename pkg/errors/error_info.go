@@ -60,7 +60,7 @@ func Info(err error, cmd ...interface{}) *ErrorInfo {
 	return &ErrorInfo{Cmd: cmd, Err: Err(err), File: file, Line: line}
 }
 
-// file and line tracing may have problems with go1.9, see related issue: https://github.com/golang/go/issues/22916
+// InfoEx file and line tracing may have problems with go1.9, see related issue: https://github.com/golang/go/issues/22916
 func InfoEx(skip int, err error, cmd ...interface{}) *ErrorInfo {
 	if e, ok := err.(*ErrorInfo); ok {
 		err = e.Err
@@ -114,7 +114,7 @@ func (r *ErrorInfo) xlogMessage() string {
 	return detail
 }
 
-// deprecated. please use (*ErrorInfo).xlogWarn
+// Warn deprecated. please use (*ErrorInfo).xlogWarn
 func (r *ErrorInfo) Warn() *ErrorInfo {
 	xlog.Std.Output("", xlog.Lwarn, 2, r.xlogMessage())
 	return r
