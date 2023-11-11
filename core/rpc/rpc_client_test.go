@@ -2,9 +2,9 @@ package rpc
 
 import (
 	"fmt"
+	"github.com/fengyuan-liang/jet-web/core/httputil"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
-	"jet-web/core/httputil"
 	"net/http"
 	"net/http/httptest"
 	"testing"

@@ -13,11 +13,11 @@ import (
 	"syscall"
 	"time"
 
-	"jet-web/core/api"
-	"jet-web/core/router"
-	"jet-web/core/rpc"
-	"jet-web/core/sync"
-	"jet-web/pkg/xlog"
+	"github.com/fengyuan-liang/jet-web/core/api"
+	"github.com/fengyuan-liang/jet-web/core/router"
+	"github.com/fengyuan-liang/jet-web/core/rpc"
+	"github.com/fengyuan-liang/jet-web/core/sync"
+	"github.com/fengyuan-liang/jet-web/pkg/xlog"
 )
 
 type Service struct {
@@ -51,7 +51,7 @@ func (s *Service) Register(rcvr ...interface{}) {
 func (s *Service) StartService(addr string) {
 	s.httpServer.Addr = addr
 	go func() {
-		xl := xlog.NewWith("[jet server]")
+		xl := xlog.NewWith("jet-web")
 		xl.Infof("control server start on %s", addr)
 		s.err = s.httpServer.ListenAndServe()
 		s.stopD.SetDone()
@@ -64,7 +64,7 @@ func (s *Service) StartService(addr string) {
 			errCh <- s.Error()
 		}
 	}()
-	// Wait for interrupt signal to gracefully shutdown the server with
+	// Wait for interrupt signal to gracefully shut down the server with
 	// a timeout of 5 seconds. quit := make(chan os.Signal, 1)
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)

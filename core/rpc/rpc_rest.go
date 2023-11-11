@@ -5,10 +5,9 @@
 package rpc
 
 import (
+	jetHandler "github.com/fengyuan-liang/jet-web/core/handler"
+	"github.com/fengyuan-liang/jet-web/core/httputil"
 	"io"
-	"io/ioutil"
-	jetHandler "jet-web/core/handler"
-	"jet-web/core/httputil"
 	"net/http"
 	"reflect"
 	"strings"
@@ -175,7 +174,7 @@ func parseReqWithBytes(ret reflect.Value, req *http.Request) error {
 		}
 	}
 
-	b, err := ioutil.ReadAll(req.Body)
+	b, err := io.ReadAll(req.Body)
 	if err != nil {
 		return err
 	}

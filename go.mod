@@ -1,4 +1,4 @@
-module jet-web
+module github.com/fengyuan-liang/jet-web
 
 go 1.19
 

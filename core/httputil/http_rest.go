@@ -7,9 +7,9 @@ package httputil
 import (
 	"context"
 	"encoding/json"
+	"github.com/fengyuan-liang/jet-web/pkg/errors"
+	"github.com/fengyuan-liang/jet-web/pkg/xlog"
 	"io"
-	"jet-web/pkg/errors"
-	"jet-web/pkg/xlog"
 	"net/http"
 	"reflect"
 	"strconv"
@@ -31,6 +31,7 @@ func Reply(w http.ResponseWriter, code int, data interface{}) {
 	h := w.Header()
 	h.Set("Content-Length", strconv.Itoa(len(msg)))
 	h.Set("Content-Type", "application/json")
+	h.Set("Server", "JetServer")
 	w.WriteHeader(code)
 	w.Write(msg)
 }

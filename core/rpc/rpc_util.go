@@ -7,11 +7,12 @@ package rpc
 import (
 	"context"
 	"github.com/fengyuan-liang/gofuture/future"
+	"github.com/fengyuan-liang/jet-web/core/httputil"
+	"github.com/fengyuan-liang/jet-web/pkg/errors"
+	"github.com/fengyuan-liang/jet-web/pkg/xlog"
 	"io"
-	"jet-web/core/httputil"
-	"jet-web/pkg/errors"
-	"jet-web/pkg/xlog"
 	"net/http"
+	"os"
 	"reflect"
 	"syscall"
 	"time"
@@ -194,7 +195,7 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	var out []reflect.Value
 	if h.hasCtx == 1 {
-		xl := xlog.New(w, "", xlog.Ldefault)
+		xl := xlog.New(os.Stderr, "", xlog.Ldefault, xlog.GenReqId())
 		ctx, cancel := context.WithCancel(context.Background())
 
 		*ctxAddr = reflect.ValueOf(ctx)

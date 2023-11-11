@@ -5,9 +5,9 @@
 package router
 
 import (
-	"jet-web/core/handler"
-	"jet-web/core/rpc"
-	"jet-web/pkg/xlog"
+	"github.com/fengyuan-liang/jet-web/core/handler"
+	"github.com/fengyuan-liang/jet-web/core/rpc"
+	"github.com/fengyuan-liang/jet-web/pkg/xlog"
 	"net/http"
 	"reflect"
 	"strings"

@@ -5,7 +5,7 @@
 package httputil
 
 import (
-	"jet-web/pkg/errors"
+	"github.com/fengyuan-liang/jet-web/pkg/errors"
 	"net/http"
 	"net/url"
 	"reflect"

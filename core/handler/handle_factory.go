@@ -6,8 +6,8 @@ package handler
 
 import (
 	"errors"
-	"jet-web/core/constant"
-	"jet-web/pkg/xlog"
+	"github.com/fengyuan-liang/jet-web/core/constant"
+	"github.com/fengyuan-liang/jet-web/pkg/xlog"
 	"net/http"
 	"reflect"
 	"syscall"

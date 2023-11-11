@@ -5,7 +5,7 @@
 package rpc
 
 import (
-	"fmt"
+	"github.com/fengyuan-liang/jet-web/pkg/utils"
 	"net/http"
 	"strings"
 	"time"
@@ -85,7 +85,7 @@ func (h *ServeMux) HandleFunc(pattern string, handler func(http.ResponseWriter, 
 }
 
 func (h *ServeMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
+	defer utils.TraceElapsedByName(time.Now(), r.URL.Path)
 	parts := strings.Split(r.URL.Path[1:], "/")
 
 	for _, route := range h.routes {
@@ -100,23 +100,5 @@ func (h *ServeMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		h.base.ServeHTTP(w, r)
 	} else {
 		http.NotFound(w, r)
-	}
-}
-
-func measureTime(start time.Time) string {
-	elapsed := time.Since(start)
-
-	if elapsed < time.Millisecond {
-		// 显示纳秒时间
-		elapsedNs := elapsed.Nanoseconds()
-		return fmt.Sprintf("%.2f 纳秒", float64(elapsedNs))
-	} else if elapsed < time.Second {
-		// 显示毫秒时间
-		elapsedMs := float64(elapsed.Milliseconds())
-		return fmt.Sprintf("%.2f 毫秒", elapsedMs)
-	} else {
-		// 显示秒时间
-		elapsedSec := elapsed.Seconds()
-		return fmt.Sprintf("%.2f 秒", elapsedSec)
 	}
 }
